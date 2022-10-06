@@ -1,14 +1,15 @@
 let express = require('express');
 let app = express();
-//see app is an object and it has many methods like app.get(),app.post(),app.listen()
 
+
+//see in the below route handler i.e we say app.get as the route handler because its first argument is the route and the 2nd argument is the callback function we call as handler because we handle some stuffs in the function,now see the res.sendFile method requires the absolute path i.e the path wrt to the root of the servers(remote computer or the computer at the backend or on cloud where we have hosted our backend) root directory,so __dirname will give the present directory from the servers root path hence we call it as absoloute path
 app.get("/",function(req,res)
         {
-          res.send("Hello Express")
-        });
-//see the above app is an object provided by express and get is one of its function,it takes 1st argument as a string (which is a path currently "/" means the root path i.e the current path where app.listen server is running and it is present is server.js file,so the root becomes the present path or you can think the root is the path where all the files like package.json etc are kept now do not confuse that the root i.e. "/" should mean the root directory of the system,this root directory is a relative root directory it is relative to the folder where the application is being created),and if the path matches to the requested path then the callback function gets triggered,now req and res are the objects provided by express which have several methods bounded to them like res.send etc...
+          res.sendFile(__dirname+"/views/index.html")
+        })
 
-// console.log("Hello Express")
+
+
 
 
 
