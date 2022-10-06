@@ -1,13 +1,23 @@
 let express = require('express');
 let app = express();
 
+//note if in url we type /name? then we say that the endpoint is name because after that our query parameter starts,so if in url we type like /name?first="Apoorva"&last="Singh" then the req.query object gets two keys first and last and the req.query javascript  object created by express  looks like this {first:Apoorva,last:Singh}
+app.get("/name",function(req,res)
+         {
+           // console.log(req.query)
+           res.json({"name":req.query.first+" "+req.query.last})
+         })
+
+
+
+
 //see in the below method we are using the route parameter i.e. req.params concept to capture input from the user in the form of javascript object,whenever the user type a request in the url in the form /Ashu/echo then this request is matched with the format defined in the below method and word acts a key and Ashu will become its value so the javascript object will get stored in req.params object and req.params.word will print Ashu,similarly we can create multiple keys in the req like /user/:userId/favfood/:favfood so the object in req params will look like {userId:"",favfood:""},so if we type in url /user/8/favfood/paneerDoPyaza then the object req.params will look like {userId:8,favfood:paneerDoPyaza}
 
-app.get("/:word/echo",function(req,res)
-        {
-          // console.log(req.params)
-          res.json({"echo":req.params.word})
-        })
+// app.get("/:word/echo",function(req,res)
+//         {
+//           // console.log(req.params)
+//           res.json({"echo":req.params.word})
+//         })
 
 
 
@@ -49,10 +59,10 @@ app.use("/public",express.static(__dirname+"/public"))
 
 
 //see in the below route handler i.e we say app.get as the route handler because its first argument is the route and the 2nd argument is the callback function we call as handler because we handle some stuffs in the function,now see the res.sendFile method requires the absolute path i.e the path wrt to the root of the servers(remote computer or the computer at the backend or on cloud where we have hosted our backend) root directory,so __dirname will give the present directory from the servers root path hence we call it as absoloute path
-app.get("/",function(req,res)
-        {
-          res.sendFile(__dirname+"/views/index.html")
-        })
+// app.get("/",function(req,res)
+//         {
+//           res.sendFile(__dirname+"/views/index.html")
+//         })
 
 
 
